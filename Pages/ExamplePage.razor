@@ -1,0 +1,31 @@
+﻿@page "/dynamic"
+
+<h3>Dynamic Component</h3>
+<br />
+<br />
+@*DACA NU PUNTEAM @ ERA JS NU BLAZOR*@
+<button @onclick="HandleBlazorServerClick">Blazor Server</button>
+<button @onclick="HandleWebAssemblyClick">Blazor WebAssembly</button>
+<br />
+<br />
+<h3>@title</h3>
+<div>
+    @content
+</div>
+
+@code {
+    private string title;
+    private string content;
+
+    private void HandleBlazorServerClick()
+    {
+        title = "Blazor Server";
+        content = "Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection";
+    }
+
+    private void HandleWebAssemblyClick()
+    {
+        title = "Blazor Server";
+        content = "Blazor WebAssembly is a single-page app (SPA) framework for building interactive client-side web apps with .NET";
+    }
+}

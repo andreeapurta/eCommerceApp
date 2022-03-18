@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eShop.Data.InMemory\eShop.Data.InMemory.csproj" />
+    <ProjectReference Include="..\eShop.UseCases\eShop.UseCases.csproj" />
+  </ItemGroup>
+
+</Project>
