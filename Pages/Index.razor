@@ -47,6 +47,20 @@ Product name : @product.Name
   <VisibilityComponent @ref="visibilityComponent"></VisibilityComponent>
    <br/>
    <button @onclick="Toggle">Toggle Visibility</button>
+    <br/>
+    <br/>
+    <TemplatedComponent Items="products" TItem="Product">
+        <Header> Welcome to my page</Header>
+        <RepeaterItem Context="item">
+            <p>Name: @item.Brand</p>
+            <p>Name: @item.Price</p>
+        </RepeaterItem>
+        <Footer>
+            <div style="font-size:10px"> Bye bye</div>
+        </Footer>
+    </TemplatedComponent>
+
+
 @code{
     private int selectedGroup=0;
     private int selectedProductId;
