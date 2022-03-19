@@ -1,4 +1,5 @@
 using eCommerceApp.Data;
+using eCommerceApp.Stores.CounterStore;
 using eShop.Data.InMemory;
 using eShop.UseCases.Interfaces;
 using eShop.UseCases.Interfaces.DataStore;
@@ -30,6 +31,7 @@ namespace eCommerceApp
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ISearchProductUseCase, SearchProductUseCase>();
             services.AddTransient<IViewProductUseCase, ViewProductUseCase>();
+            services.AddScoped<CounterStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
