@@ -2,7 +2,7 @@
 @using eShop.Business.Models
 
 <h1>Hello, world!</h1>
-Below you can find some aata binding examples 
+Below you can find some examples 
 
 @*data-binding 
 1) Product name : @Product.Name  -the value will now flow from the view back to the state. -one way
@@ -54,12 +54,45 @@ Product name : @product.Name
         <RepeaterItem Context="item">
             <p>Name: @item.Brand</p>
             <p>Name: @item.Price</p>
+            <hr />
         </RepeaterItem>
         <Footer>
             <div style="font-size:10px"> Bye bye</div>
         </Footer>
     </TemplatedComponent>
 
+
+
+    @*form example*@
+    <EditForm Model="formProduct" OnValidSubmit="ValidFormSubmitted">
+       @* if you want to add validation - add required on model*@
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <ValidationSummary></ValidationSummary>
+         <InputNumber id="id"  @bind-Value="formProduct.Id"  />
+        <br />
+        <label>Product name:<br />
+        <InputText type="text" id="name" @bind-Value="formProduct.Name" />
+        </label>
+        <br />
+          <label>Product brand:<br />
+          <InputText type="text" id="brand"  @bind-Value="formProduct.Brand"  />
+        </label>
+        <br />
+         <label>Product Image:<br />
+         <InputText type="text" id="imageLink" @bind-Value="formProduct.ImageLink"  />
+        </label>
+        <br />
+        <label>Product description:<br />
+        <InputTextArea type="text" id="description"  @bind-Value="formProduct.Description"  />
+        </label>
+        <br />
+        <label>Product price:<br />
+        <InputNumber id="price"  @bind-Value="formProduct.Price"  />
+        </label>
+        <br />
+
+        <input type="submit" value="sumbit" />
+    </EditForm>
 
 @code{
     private int selectedGroup=0;
@@ -77,9 +110,16 @@ Product name : @product.Name
                 new Product { Id = 380, Brand = "maybelline", Name = "Maybelline Fit Me Shine-Free Foundation Stick", Price = 10.99, ImageLink = "https://d3t32hsnjxo7q6.cloudfront.net/i/d04e7c2ed65dabe1dca4eed9aa268e95_ra,w158,h184_pa,w158,h184.png", Description = "Get flawless, shine-free skin instantly and on-the-go for tailor-made  mattifying coverage.  The anti-shine core has ultra-lightweight powders  built in to the stick foundation to instantly dissolve excess oil. Features: Maybelline's first gel stick foundation with an anti-shine core Fresh gel foundation blends to a flawless matte finish Lightweight powders in the anti-shine core instantly dissolve excess oil"},
          };
     private Product product = new Product { Id = 495, Brand = "maybelline", Name = "Maybelline Face Studio Master Hi-Light Light Booster Bronzer", Price = 14.99, ImageLink = "https://d3t32hsnjxo7q6.cloudfront.net/i/991799d3e70b8856686979f8ff6dcfe0_ra,w158,h184_pa,w158,h184.png", Description = "Maybelline Face Studio Master Hi-Light Light Boosting bronzer formula has an expert  balance of shade + shimmer illuminator for natural glow. Skin goes  soft-lit with zero glitz.    For Best Results: Brush over all shades in palette and gently sweep over  cheekbones, brow bones, and temples, or anywhere light naturally touches  the face" };
-
+    private Product formProduct = new Product();
     void Toggle()
     {
         this.visibilityComponent.SetVisibility();
+    }
+
+    //form
+
+    private void ValidFormSubmitted()
+    {
+        
     }
 }
