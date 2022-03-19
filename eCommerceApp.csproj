@@ -7,6 +7,8 @@
   <ItemGroup>
     <ProjectReference Include="..\eShop.Data.InMemory\eShop.Data.InMemory.csproj" />
     <ProjectReference Include="..\eShop.UseCases\eShop.UseCases.csproj" />
+    <ProjectReference Include="..\eShop.Web.AdminPortal\eShop.Web.AdminPortal.csproj" />
+    <ProjectReference Include="..\eShop.Web.CustomerPortal\eShop.Web.CustomerPortal.csproj" />
   </ItemGroup>
 
 </Project>

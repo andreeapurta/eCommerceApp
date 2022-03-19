@@ -1,9 +1,9 @@
 using eCommerceApp.Data;
 using eCommerceApp.Stores.CounterStore;
 using eShop.Data.InMemory;
-using eShop.UseCases.Interfaces;
 using eShop.UseCases.Interfaces.DataStore;
 using eShop.UseCases.SearchProductScreen;
+using eShop.UseCases.ViewProductScreen;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,10 +27,14 @@ namespace eCommerceApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            //sigleton == a single static instance
             services.AddSingleton<WeatherForecastService>();
+            //transient == always a new instance
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ISearchProductUseCase, SearchProductUseCase>();
             services.AddTransient<IViewProductUseCase, ViewProductUseCase>();
+            //scoped == one instane per connection! When you refresh the page, signalR deconnects => it creates a different connection -> a new store
+            //scoped - can be used for  state management related to user ( not singleton, beause we dont want all the users to see the same data)
             services.AddScoped<CounterStore>();
         }
 
