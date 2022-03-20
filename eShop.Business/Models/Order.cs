@@ -24,17 +24,14 @@ namespace eShop.Business.Models
         {
             LineItems = new List<OrderLineItem>();
         }
-        public void AddProduct(int productId, int quantity, double price)
+
+        public void AddProduct(int productId, int qty, double price)
         {
             var item = LineItems.FirstOrDefault(x => x.ProductId == productId);
             if (item != null)
-            {
-                item.Quantity += quantity;
-            }
+                item.Quantity += qty;
             else
-            {
-                LineItems.Add(new OrderLineItem { ProductId = productId, Quantity = quantity, Price = price, OrderId = OrderId });
-            }
+                LineItems.Add(new OrderLineItem { ProductId = productId, Quantity = qty, Price = price, OrderId = OrderId });
         }
 
         public void RemoveProduct(int productId)

@@ -88,7 +88,7 @@ namespace eShop.ShoppingCart.LocalStorage
 
         private async Task<Order> GetOrderFromLocalStorage()
         {
-            Order order = null;
+            Order order;
 
             var orderKey = await jsRuntime.InvokeAsync<string>("localStorage.getItem", shoppingCartLocalStorageKey);
             //aici de testat daca pun " " in EmptyAsync, poate nu mai trebe conditia 2
@@ -102,7 +102,6 @@ namespace eShop.ShoppingCart.LocalStorage
                 await SetOrderInLocalStorage(order);
             }
 
-            //getting the products?!
             foreach (var item in order.LineItems)
             {
                 item.Product = productRepository.GetProduct(item.ProductId);

@@ -5,9 +5,11 @@ using eShop.StateStore.LocalStorage;
 using eShop.UseCases.Interfaces.DataStore;
 using eShop.UseCases.Interfaces.StateStore;
 using eShop.UseCases.Interfaces.UI;
+using eShop.UseCases.OrderConfirmationScreen;
 using eShop.UseCases.SearchProductScreen;
 using eShop.UseCases.ShoppingCartScreen;
 using eShop.UseCases.ViewProductScreen;
+using eShop.Web.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +32,8 @@ namespace eShop.Bootstrapper
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
+            services.AddTransient<JsNavigator>();
+
             //sigleton == a single static instance
             //transient == always a new instance
             services.AddSingleton<IProductRepository, ProductRepository>();
@@ -43,6 +47,8 @@ namespace eShop.Bootstrapper
             services.AddTransient<IAddProductToCartUseCase, AddProductToCartUseCase>();
             services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
             services.AddTransient<IUpdateQuantityUseCase, UpdateQuantityUseCase>();
+            services.AddTransient<IPlaceOrderUseCase, PlaceOrderUseCase>();
+            services.AddTransient<IViewOrderConfirmationUseCase, ViewOrderConfirmationUseCase>();
 
             //scoped == one instane per connection! When you refresh the page, signalR deconnects => it creates a different connection -> a new store
             //scoped - can be used for  state management related to user ( not singleton, beause we dont want all the users to see the same data)
