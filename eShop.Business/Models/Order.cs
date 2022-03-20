@@ -20,6 +20,10 @@ namespace eShop.Business.Models
         public List<OrderLineItem> LineItems { get; set; }
         public string UniqueId { get; set; }
 
+        public Order()
+        {
+            LineItems = new List<OrderLineItem>();
+        }
         public void AddProduct(int productId, int quantity, double price)
         {
             var item = LineItems.FirstOrDefault(x => x.ProductId == productId);

@@ -6,16 +6,16 @@ namespace eShop.UseCases.SearchProductScreen
 {
     public class SearchProductUseCase : ISearchProductUseCase
     {
-        private IProductRepository ProductRepository { get; set; }
+        private readonly IProductRepository productRepository;
 
         public SearchProductUseCase(IProductRepository productRepository)
         {
-            ProductRepository = productRepository;
+            this.productRepository = productRepository;
         }
 
         public IEnumerable<Product> Execute(string filter)
         {
-            return ProductRepository.GetProducts(filter);
+            return productRepository.GetProducts(filter);
         }
     }
 }

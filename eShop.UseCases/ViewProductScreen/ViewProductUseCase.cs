@@ -5,16 +5,16 @@ namespace eShop.UseCases.ViewProductScreen
 {
     public class ViewProductUseCase : IViewProductUseCase
     {
-        private IProductRepository ProductRepository { get; set; }
+        private readonly IProductRepository productRepository;
 
         public ViewProductUseCase(IProductRepository productRepository)
         {
-            ProductRepository = productRepository;
+            this.productRepository = productRepository;
         }
 
         public Product Execute(int id)
         {
-            return ProductRepository.GetProduct(id);
+            return productRepository.GetProduct(id);
         }
     }
 }

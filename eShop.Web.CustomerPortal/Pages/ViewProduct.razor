@@ -1,10 +1,10 @@
-﻿
-rot
-@page "/product/{id:int}"
-@using eShop.Business.Models
-@inject IViewProductUseCase viewProdutUseCase
-<h3>Product Details</h3>
+﻿@page "/product/{id:int}"
 
+@inject NavigationManager navigation
+@inject IViewProductUseCase viewProdutUseCase
+@inject IAddProductToCartUseCase addProductToCartUseCase 
+
+<h3>Product Details</h3>
 <div class="card" style="width: 28rem;">
     <div class="card-body">
         <img src="@product.ImageLink" />
@@ -16,6 +16,7 @@ rot
         </p>
         <p class="card-text">@product.Description</p>
     </div>
+    <button class="btn btn-primary" @onclick="AddToCart" >Add to cart</button>
 </div>
 <br/>
 <NavLink href="products">Back to Products</NavLink>
@@ -23,6 +24,7 @@ rot
 
 @code {
     private Product product;
+
     // it's not case sensitive
     [Parameter]
     public int Id { get; set; }
@@ -32,9 +34,17 @@ rot
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        if(Id> 0)
+
+        if(Id > 0)
         {
             product = viewProdutUseCase.Execute(Id);
         }
     }
+
+    private void AddToCart()
+    {
+        addProductToCartUseCase.Execute(product.Id);
+        navigation.NavigateTo("/");
+    }
+
 }

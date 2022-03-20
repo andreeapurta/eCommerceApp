@@ -36,7 +36,7 @@ namespace eShop.Business.Services
 
         public bool CheckUpdateOrder(Order order)
         {
-            //order has to existi
+            //order has to exist
             if (order == null) return false;
             if (!order.OrderId.HasValue) return false;
 
