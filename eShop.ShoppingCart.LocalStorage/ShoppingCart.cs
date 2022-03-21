@@ -92,11 +92,9 @@ namespace eShop.ShoppingCart.LocalStorage
 
             var orderKey = await jsRuntime.InvokeAsync<string>("localStorage.getItem", shoppingCartLocalStorageKey);
             //aici de testat daca pun " " in EmptyAsync, poate nu mai trebe conditia 2
-            if (!string.IsNullOrWhiteSpace(orderKey) && orderKey.ToLower() != "null")
-            {
-                order = JsonConvert.DeserializeObject<Order>(orderKey);
-            }
-            else
+
+            order = JsonConvert.DeserializeObject<Order>(orderKey);
+            if (order == null || order.LineItems == null)
             {
                 order = new Order();
                 await SetOrderInLocalStorage(order);
